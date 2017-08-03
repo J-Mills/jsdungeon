@@ -1,0 +1,9 @@
+html {
+  text-align: center;
+  background-color: #232323;
+}
+
+canvas {
+  border: 3px double yellow;
+  margin: 25px;
+}
