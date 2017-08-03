@@ -80,7 +80,7 @@ Game.Mixins.FungusActor = {
 
 Game.Mixins.Destructible = {
   name: 'Destructible',
-  init: function () {
+  init: function (template) {
     this._maxHp = template['maxHp'] || 10;
     // We allow taking in hp from the template in case we want more than 10
     this._hp = template['hp'] || this._maxHp;
@@ -117,11 +117,27 @@ Game.Mixins.Attacker = {
     // If the target is destructible, calculate the damage
     // based on attack and defense value
     if (target.hasMixin('Destructible')) {
-      var attack = this._getAttackValue();
+      var attack = this.getAttackValue();
       var defense = target.getDefenseValue();
       var max = Math.max(0, attack - defense);
       target.takeDamage(this, 1 + Math.floor(Math.random() * max));
     }
+  }
+}
+
+Game.Mixins.MessageRecipient = {
+  name: 'MessageRecipient',
+  init: function (template) {
+    this._messages = [];
+  },
+  receiveMessage: function (message) {
+    this._messages.push(message);
+  },
+  getMessages: function () {
+    return this._messages;
+  },
+  clearMessages: function () {
+    this._messages = [];
   }
 }
 
@@ -132,7 +148,7 @@ Game.PlayerTemplate = {
   background: 'black',
   maxHp: 40,
   attackValue: 10,
-  mixins: [Game.Mixins.Moveable, Game.Mixins.PlayerActor, Game.Mixins.SimpleAttacker, Game.Mixins.Destructible]
+  mixins: [Game.Mixins.Moveable, Game.Mixins.PlayerActor, Game.Mixins.Attacker, Game.Mixins.Destructible]
 }
 
 Game.FungusTemplate = {
