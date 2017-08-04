@@ -77,7 +77,7 @@ Game.Mixins.FungusActor = {
             // Send a message nearby
             Game.sendMessageNearby(this.getMap(),
               entity.getX(), entity.getY(),
-              'The fungus is spreading!');
+              'The %c{green}Fungus%c{white} is spreading!');
           }
         }
       }
@@ -133,7 +133,7 @@ Game.Mixins.Attacker = {
 
       Game.sendMessage(this, 'You strike the %s for %d damage!',
         [target.getName(), damage]);
-      Game.sendMessage(this, 'The %s strikes you for %d damage!',
+      Game.sendMessage(target, 'The %s strikes you for %d damage!',
         [this.getName(), damage]);
       
       target.takeDamage(this, damage);

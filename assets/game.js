@@ -8,7 +8,7 @@ var Game = {
     // Create a display X characters wide and Y characters high
     this._display = new ROT.Display({
       width: this._screenWidth,
-      height: this._screenHeight,
+      height: this._screenHeight + 1,
       fontFamily: 'monospace',
     });
     // Create a helper function for binding to an event

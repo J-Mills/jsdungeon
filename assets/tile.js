@@ -28,7 +28,17 @@ Game.Tile.wallTile = new Game.Tile({
   foreground: '#A0622D',
   isDiggable: true
 });
+Game.Tile.stairsUpTile = new Game.Tile({
+  character: '<',
+  foreground: 'white',
+  isWalkable: true
+});
+Game.Tile.stairsDownTile = new Game.Tile({
+  character: '>',
+  foreground: 'white',
+  isWalkable: true
+});
 Game.Tile.rockTile = new Game.Tile({
   character: '0',
   foreground: 'grey',
-})
+});
