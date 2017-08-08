@@ -18,6 +18,20 @@ Game.Tile.prototype.isDiggable = function() {
   return this._isDiggable;
 }
 
+Game.getNeighborPositions = function (x, y) {
+  var tiles = [];
+  // Generate all possible offsets
+  for (var dX = -1; dX < 2; dX++) {
+    for (var dY = -1; dY < 2; dY++) {
+      if (dX == 0 && dY == 0) {
+        continue;
+      }
+      tiles.push({ x: x + dX, y: y + dY });
+    }
+  }
+  return tiles.randomize();
+}
+
 Game.Tile.nullTile = new Game.Tile({})
 Game.Tile.floorTile = new Game.Tile({
   character: '.',
